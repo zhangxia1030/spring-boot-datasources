@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.dao.test2.TestMapper2" >
+
+    <resultMap id="BaseResultMap" type="com.zx.entity.test2.User2" >
+        <id column="no" property="no" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="message" property="message" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        no, name, message
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM test2
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM test2
+	   WHERE no = #{no}
+    </select>
+
+    <insert id="insert" parameterType="com.zx.entity.test2.User2" >
+       INSERT INTO 
+       		test2
+       		(no,name,message) 
+       	VALUES
+       		(#{no}, #{name}, #{message})
+    </insert>
+    
+    <update id="update" parameterType="com.zx.entity.test2.User2" >
+       UPDATE 
+       		test2 
+       SET 
+       	<if test="message != null">message = #{message},</if>
+       	name = #{name}
+       WHERE 
+       		no = #{no}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Integer" >
+       DELETE FROM
+       		 test2 
+       WHERE 
+       		 no =#{no}
+    </delete>
+
+</mapper>
