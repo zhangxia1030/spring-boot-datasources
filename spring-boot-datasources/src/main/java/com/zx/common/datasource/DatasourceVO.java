@@ -1,8 +1,12 @@
 package com.zx.common.datasource;
 
+import java.util.Properties;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "spring.datasource.primary")
+@Component
 public class DatasourceVO {
 	private String schema = null;
 	private String continueOnError = null;
@@ -147,6 +151,52 @@ public class DatasourceVO {
 	}
 	public void setConnectionProperties(String connectionProperties) {
 		this.connectionProperties = connectionProperties;
+	}
+	
+	@Override
+	public String toString() {
+		return "DatasourceVO [schema=" + schema + ", continueOnError="
+				+ continueOnError + ", type=" + type + ", url=" + url
+				+ ", username=" + username + ", password=" + password
+				+ ", driverClassName=" + driverClassName + ", initialSize="
+				+ initialSize + ", minIdle=" + minIdle + ", maxActive="
+				+ maxActive + ", maxWait=" + maxWait
+				+ ", timeBetweenEvictionRunsMillis="
+				+ timeBetweenEvictionRunsMillis + ", validationQuery="
+				+ validationQuery + ", testWhileIdle=" + testWhileIdle
+				+ ", testOnBorrow=" + testOnBorrow + ", testOnReturn="
+				+ testOnReturn + ", poolPreparedStatements="
+				+ poolPreparedStatements
+				+ ", maxPoolPreparedStatementPerConnectionSize="
+				+ maxPoolPreparedStatementPerConnectionSize + ", filters="
+				+ filters + ", connectionProperties=" + connectionProperties
+				+ "]";
+	}
+	public Properties getProAll()
+	{
+		Properties p = new Properties();
+		p.put("schema", schema);
+		p.put("continueOnError", continueOnError);
+		p.put("type", type);
+		p.put("url", url);
+		p.put("username", username);
+		p.put("password", password);
+		p.put("schema", schema);
+		p.put("driverClassName", driverClassName);
+		p.put("initialSize",initialSize);
+		p.put("minIdle", minIdle);
+		p.put("maxActive", maxActive);
+		p.put("maxWait", maxWait);
+		p.put("timeBetweenEvictionRunsMillis", timeBetweenEvictionRunsMillis);
+		p.put("validationQuery", validationQuery);
+		p.put("testWhileIdle", testWhileIdle);
+		p.put("testOnBorrow", testOnBorrow);
+		p.put("testOnReturn", testOnReturn);
+		p.put("poolPreparedStatements", poolPreparedStatements);
+		p.put("maxPoolPreparedStatementPerConnectionSize", maxPoolPreparedStatementPerConnectionSize);
+		p.put("filters", filters);
+		p.put("connectionProperties", connectionProperties);
+		return p;
 	}
 	
 }
