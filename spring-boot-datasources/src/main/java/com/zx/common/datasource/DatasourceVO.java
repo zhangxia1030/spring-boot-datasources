@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "spring.datasource.primary")
 @Component
 public class DatasourceVO {
+	
 	private String schema = null;
 	private String continueOnError = null;
 
